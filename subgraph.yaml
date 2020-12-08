@@ -1,0 +1,25 @@
+specVersion: 0.0.2
+description: Gravatar for Ethereum
+repository: https://github.com/graphprotocol/example-subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+ name: api
+ network: mainnet
+ source:
+   address: ‘0xE0B7927c4aF23765Cb51314A0E0521A9645F0E2A’
+   abi: api
+ mapping:
+   kind: ethereum/events
+   apiVersion: 0.0.3
+   language: wasm/assemblyscript
+   entities:
+     — Proposal
+   abis:
+     — name: api
+     file: ./abis/apijson
+ eventHandlers:
+     — event: Apply(indexed uint256,indexed address,string)
+       handler: handleApply
+ file: ./src/mapping.ts
